@@ -7,4 +7,4 @@ def normalize(v):
     return v / norm
 
 def to_byte(x, gamma = 2.2):
-    return int(np.clip(255.0 * np.power(x, 1 / gamma), a_min=0.0, a_max=255.0))
+    return int(np.clip(255.0 * np.power(x, 1.0 / gamma), a_min=0.0, a_max=255.0))
