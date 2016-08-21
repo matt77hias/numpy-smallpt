@@ -76,7 +76,7 @@ def radiance(ray, rng):
             continue
         else:
             w = n if n.dot(r.d) < 0 else -n
-            u = normalize(np.cross(np.array([0.0, 1.0, 0.0], np.float64) if abs(w[0]) > 0.1 else np.array([1.0, 0.0, 0.0], np.float64), w))
+            u = normalize(np.cross(np.array([0.0, 1.0, 0.0], np.float64) if np.fabs(w[0]) > 0.1 else np.array([1.0, 0.0, 0.0], np.float64), w))
             v = np.cross(w, u)
 
             sample_d = uniform_sample_on_hemisphere(rng.uniform_float(), rng.uniform_float())
@@ -90,8 +90,8 @@ if __name__ == "__main__":
     rng = RNG()
     nb_samples = int(sys.argv[1]) // 4 if len(sys.argv) > 1 else 1
 
-    w = 512
-    h = 384
+    w = 1024
+    h = 768
 
     eye = np.array([50, 52, 295.6], dtype=np.float64)
     gaze = normalize(np.array([0, -0.042612, -1], dtype=np.float64))
