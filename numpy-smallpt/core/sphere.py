@@ -11,7 +11,7 @@ class Sphere(object):
         self.r = np.float64(r)
         self.p = np.copy(p)
         self.e = np.copy(e)
-        self.f = np.copy(e)
+        self.f = np.copy(f)
         self.reflection_t = reflection_t
 
     def intersect(self, ray):
