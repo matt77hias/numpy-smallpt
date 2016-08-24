@@ -4,7 +4,7 @@ from image_io import write_ppm
 from math_tools import normalize
 from ray import Ray
 from rng import RNG
-from sampling import uniform_sample_on_hemisphere
+from sampling import cosine_weighted_sample_on_hemisphere
 from sphere import Sphere
 from specular import ideal_specular_reflect, ideal_specular_transmit
 
@@ -79,7 +79,7 @@ def radiance(ray, rng):
             u = normalize(np.cross(np.array([0.0, 1.0, 0.0], np.float64) if np.fabs(w[0]) > 0.1 else np.array([1.0, 0.0, 0.0], np.float64), w))
             v = np.cross(w, u)
 
-            sample_d = uniform_sample_on_hemisphere(rng.uniform_float(), rng.uniform_float())
+            sample_d = cosine_weighted_sample_on_hemisphere(rng.uniform_float(), rng.uniform_float())
             d = normalize(sample_d[0] * u + sample_d[1] * v + sample_d[2] * w)
             r = Ray(p, d, tmin=Sphere.EPSILON_SPHERE, depth=r.depth + 1)
             continue
